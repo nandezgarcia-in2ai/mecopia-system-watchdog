@@ -1,0 +1,12 @@
+[Unit]
+Description=Mecopia PM2 watchdog (single run)
+After=network.target
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/mecopia-watchdog
+ExecStart=/usr/bin/node src/watchdog.js --once
+EnvironmentFile=/opt/mecopia-watchdog/.env
+StandardOutput=journal
+StandardError=journal
