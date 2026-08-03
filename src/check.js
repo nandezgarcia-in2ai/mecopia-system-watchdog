@@ -163,6 +163,7 @@ export async function evaluateAndAlert(listText) {
     alerts.push(sendAlert(buildRecoverySubject(recovered), text, html));
   }
 
+  await Promise.all(alerts);
   await saveState(state);
   return { downNow, recovered, alertsSent: alerts.length };
 }

@@ -1,6 +1,6 @@
 # Mecopia Watchdog
 
-Supervisa los servicios PM2 de Mecopia en `mecopia-admin-server` y envía un correo a `andres.fernandez@in2ai.com` cuando alguno deje de estar `online`.
+Supervisa los servicios PM2 de Mecopia en `mecopia-admin-server` y envía un correo a `nandezgarcia@gmail.com` cuando alguno deje de estar `online`.
 
 ## Estado actual de PM2 (3 ago 2026)
 
