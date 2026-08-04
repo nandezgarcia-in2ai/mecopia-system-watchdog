@@ -63,7 +63,18 @@ function buildBody(down, host) {
     return `- ${d.name}: ${st}${restarts}`;
   });
 
+  const explanation = [
+    "Este correo lo envía el watchdog automático de Mecopia.",
+    "Su función es supervisar los servicios PM2 del servidor mecopia-admin-server",
+    "y alertar cuando alguno de los procesos vigilados deja de estar online.",
+    "Has recibido este mensaje porque tu dirección está en la lista de seguimiento.",
+  ].join(" ");
+
+  const optOut = "Si no deseas recibir estas alertas, escribe un correo a andres.fernandez@in2ai.com.";
+
   const text = [
+    explanation,
+    "",
     `Fecha: ${formatDate()}`,
     `Servidor: ${host}`,
     "",
@@ -71,15 +82,19 @@ function buildBody(down, host) {
     ...lines,
     "",
     "Revisa el servidor con: pm2 status && pm2 logs",
+    "",
+    optOut,
   ].join("\n");
 
-  const html = `<p><strong>Fecha:</strong> ${formatDate()}<br>`
+  const html = "<p>" + explanation + "</p>"
+    + `<p><strong>Fecha:</strong> ${formatDate()}<br>`
     + `<strong>Servidor:</strong> ${host}</p>`
     + "<p>Los siguientes servicios no están online:</p>"
     + "<ul>"
     + down.map((d) => `<li><code>${d.name}</code>: ${d.status}${d.restarts !== null ? ` (reinicios: ${d.restarts})` : ""}</li>`).join("")
     + "</ul>"
-    + "<p>Revisa el servidor con: <code>pm2 status && pm2 logs</code></p>";
+    + "<p>Revisa el servidor con: <code>pm2 status && pm2 logs</code></p>"
+    + "<p>" + optOut + "</p>";
 
   return { text, html };
 }
@@ -89,20 +104,35 @@ function buildRecoverySubject(recovered) {
 }
 
 function buildRecoveryBody(recovered, host) {
+  const explanation = [
+    "Este correo lo envía el watchdog automático de Mecopia.",
+    "Su función es supervisar los servicios PM2 del servidor mecopia-admin-server",
+    "y alertar cuando alguno de los procesos vigilados deja de estar online o se recupera.",
+    "Has recibido este mensaje porque tu dirección está en la lista de seguimiento.",
+  ].join(" ");
+
+  const optOut = "Si no deseas recibir estas alertas, escribe un correo a andres.fernandez@in2ai.com.";
+
   const text = [
+    explanation,
+    "",
     `Fecha: ${formatDate()}`,
     `Servidor: ${host}`,
     "",
     "Los siguientes servicios se han recuperado:",
     ...recovered.map((r) => `- ${r}`),
+    "",
+    optOut,
   ].join("\n");
 
-  const html = `<p><strong>Fecha:</strong> ${formatDate()}<br>`
+  const html = "<p>" + explanation + "</p>"
+    + `<p><strong>Fecha:</strong> ${formatDate()}<br>`
     + `<strong>Servidor:</strong> ${host}</p>`
     + "<p>Los siguientes servicios se han recuperado:</p>"
     + "<ul>"
     + recovered.map((r) => `<li><code>${r}</code></li>`).join("")
-    + "</ul>";
+    + "</ul>"
+    + "<p>" + optOut + "</p>";
 
   return { text, html };
 }
