@@ -39,7 +39,7 @@ cat > "\$WATCHDOG_ENV" <<ENV
 \$MAIL_CLIENT_SECRET
 \$MAIL_REFRESH_TOKEN
 MAIL_FROM_NAME=Mecopia Watchdog
-ALERT_TO=nandezgarcia@gmail.com,cristina.perez@in2ai.com,alvaro.perez@in2ai.com,lino@in2ai.com,manuel@in2ai.com,alejandro.afonso@in2ai.com,marcos.magni@in2ai.com,javier.castillo@in2ai.com,jheremmy.matienzo@in2ai.com,adrian.ortega@in2ai.com,andres.fernandez@in2ai.com
+ALERT_TO=nandezgarcia@gmail.com,cristina.perez@in2ai.com,alvaro.perez@in2ai.com,lino@in2ai.com,alejandro.afonso@in2ai.com,marcos.magni@in2ai.com,javier.castillo@in2ai.com,jheremmy.matienzo@in2ai.com,adrian.ortega@in2ai.com,andres.fernandez@in2ai.com
 CHECK_MODE=local
 PM2_SERVICES=mecopia-back,mecopia-web,mecopia-web-admin
 CHECK_INTERVAL_MS=60000
